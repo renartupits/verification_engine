@@ -1,45 +1,55 @@
 import { CheckBlock } from './components/CheckBlock.tsx'
 import { Button } from '../../components/button/Button.tsx'
 import { useEffect, useState } from 'react'
-import { mockData } from '../mockData.ts'
-import { AllowedKeyboardArrowsClicked, AllowedKeyboardNumbersClicked, VerificationItemWithDisabled } from './types.ts'
-import { handleCheckBlockKeyNavigation, handleCheckButtonGroupKeyNavigation } from '../../listeners/keyboardListeners.ts'
+import {
+  AllowedKeyboardArrowsClicked,
+  AllowedKeyboardNumbersClicked,
+  VerificationItem,
+  VerificationItemWithDisabled,
+} from './types.ts'
+import {
+  handleCheckBlockKeyNavigation,
+  handleCheckButtonGroupKeyNavigation,
+} from '../../listeners/keyboardListeners.ts'
 
+interface VerificationProps {
+  verificationItems: VerificationItem[];
+}
 
-export const Verification = () => {
-  const [verificationItems, setVerificationItems] = useState<VerificationItemWithDisabled[]>([])
+export const Verification = ({verificationItems}: VerificationProps) => {
+  const [checkListItems, setCheckListItems] = useState<VerificationItemWithDisabled[]>([])
   const [activeTab, setActiveTab] = useState<number | null>(null)
 
   useEffect(() => {
-    const data = mockData
+    const data = verificationItems
       .sort((a, b) => a.priority - b.priority)
       .map((item, index) => ({...item, disabled: index !== 0}))
-    setVerificationItems(data)
+    setCheckListItems(data)
   }, [])
 
   useEffect(() => handleCheckBlockKeyNavigation(onArrowsClick));
   useEffect(() => handleCheckButtonGroupKeyNavigation(onNumbersClick))
 
-  const itemSelectedValue = verificationItems.some(item => item.selected)
+  const itemSelectedValue = checkListItems.some(item => item.selected)
 
   // @TODO Managing disabled fields needs to be refactored
   useEffect(() => {
     if (activeTab !== null) {
-      if (activeTab < 0 || activeTab >= verificationItems.length) {
+      if (activeTab < 0 || activeTab >= checkListItems.length) {
         return
       }
 
-      const item = verificationItems[activeTab]
+      const item = checkListItems[activeTab]
       if (item.selected) {
         const nextTab = activeTab + 1
-        if (nextTab < verificationItems.length) {
-          const updatedList = verificationItems.map((item, index) => {
+        if (nextTab < checkListItems.length) {
+          const updatedList = checkListItems.map((item, index) => {
             if (index === nextTab) {
               return { ...item, disabled: false };
             }
             return item;
           });
-          setVerificationItems(updatedList);
+          setCheckListItems(updatedList);
         }
       }
 
@@ -59,8 +69,8 @@ export const Verification = () => {
         setActiveTab(0)
       } else {
         const nextTab = activeTab + 1
-        const isNextDisabled = verificationItems[nextTab].disabled
-        if (!isNextDisabled && nextTab < verificationItems.length) {
+        const isNextDisabled = checkListItems[nextTab].disabled
+        if (!isNextDisabled && nextTab < checkListItems.length) {
           setActiveTab(nextTab)
         }
       }
@@ -69,7 +79,7 @@ export const Verification = () => {
 
   const onNumbersClick = (keyboardNumber: AllowedKeyboardNumbersClicked) => {
     if (activeTab !== null) {
-      const item = verificationItems[activeTab]
+      const item = checkListItems[activeTab]
       if (keyboardNumber === AllowedKeyboardNumbersClicked.NR1) {
         setVerificationItemSelectValue(item, true)
       } else if (keyboardNumber === AllowedKeyboardNumbersClicked.NR2) {
@@ -80,24 +90,24 @@ export const Verification = () => {
 
   const setVerificationItemSelectValue = (item: VerificationItemWithDisabled, value: boolean) => {
     const updatedItem = {...item, selected: value}
-    const listWithoutItem = verificationItems.filter(i => i.id !== item.id)
+    const listWithoutItem = checkListItems.filter(i => i.id !== item.id)
     const updatedVerificationList = [...listWithoutItem, updatedItem].sort((a, b) => a.priority - b.priority)
-    setVerificationItems(updatedVerificationList)
+    setCheckListItems(updatedVerificationList)
   }
 
   const onSubmitClick = () => {
-    console.log('Submit clicked', verificationItems)
+    console.log('Submit clicked', checkListItems)
   }
 
   const isSubmitDisabled =
-    verificationItems.some(item => item.selected === false) ||
-    verificationItems.every(item => item.selected === true)
+    checkListItems.some(item => item.selected === false) ||
+    checkListItems.every(item => item.selected === true)
 
   return (
-    <div className="flex items-center justify-center font-inter">
+    <div className="flex min-h-screen items-center justify-center pt-2 pl-2 space-y-6 font-inter">
       <div className="flex w-fit flex-col justify-between border shadow min-h-[476px]">
         <ul>
-          {verificationItems.map((item, index) =>
+          {checkListItems.map((item, index) =>
             <CheckBlock
               key={item.id}
               i={index}

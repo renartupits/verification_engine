@@ -1,11 +1,20 @@
 import { Verification } from './pages/verification/Verification.tsx'
+import { useGetCheckItems } from './api/verificationApi.ts'
 
 function App() {
 
+  const {data, isPending, isError} = useGetCheckItems()
+
+  if (isPending) {
+    return <div>Loading...</div>
+  }
+
+  if (isError) {
+    return <div>Error...</div>
+  }
+
   return (
-    <div className="min-h-screen pt-2 pl-2 space-y-6 font-inter">
-      <Verification />
-    </div>
+      <Verification verificationItems={data} />
   )
 }
 
