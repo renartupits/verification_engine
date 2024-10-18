@@ -1,4 +1,4 @@
-import { CheckButtonGroup } from '../../../components/check/CheckButtonGroup.tsx'
+import { CheckButtonGroup } from '../../../../components/checks/CheckButtonGroup.tsx'
 import classNames from 'classnames'
 import { VerificationItemWithDisabled } from '../types.ts'
 

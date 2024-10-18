@@ -1,21 +1,7 @@
-import { Verification } from './pages/verification/Verification.tsx'
-import { useGetCheckItems } from './api/verificationApi.ts'
+import { VerificationEngine } from './pages/verificationEngine/VerificationEngine.tsx'
 
 function App() {
-
-  const {data, isPending, isError} = useGetCheckItems()
-
-  if (isPending) {
-    return <div>Loading...</div>
-  }
-
-  if (isError) {
-    return <div>Error...</div>
-  }
-
-  return (
-      <Verification verificationItems={data} />
-  )
+  return <VerificationEngine />
 }
 
 export default App

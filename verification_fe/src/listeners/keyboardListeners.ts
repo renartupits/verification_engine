@@ -1,4 +1,4 @@
-import { AllowedKeyboardArrowsClicked, AllowedKeyboardNumbersClicked } from '../pages/verification/types.ts'
+import { AllowedKeyboardArrowsClicked, AllowedKeyboardNumbersClicked } from '../pages/verificationEngine/verification/types.ts'
 
 export const handleCheckBlockKeyNavigation = (onClick: (value: AllowedKeyboardArrowsClicked) => void) => {
   const handleKeyDown = (event: KeyboardEvent) => {

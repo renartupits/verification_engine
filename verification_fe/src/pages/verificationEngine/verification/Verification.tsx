@@ -1,5 +1,5 @@
 import { CheckBlock } from './components/CheckBlock.tsx'
-import { Button } from '../../components/button/Button.tsx'
+import { Button } from '../../../components/buttons/Button.tsx'
 import { useEffect, useState } from 'react'
 import {
   AllowedKeyboardArrowsClicked,
@@ -10,13 +10,14 @@ import {
 import {
   handleCheckBlockKeyNavigation,
   handleCheckButtonGroupKeyNavigation,
-} from '../../listeners/keyboardListeners.ts'
+} from '../../../listeners/keyboardListeners.ts'
 
 interface VerificationProps {
   verificationItems: VerificationItem[];
+  setResultView: (value: boolean) => void;
 }
 
-export const Verification = ({verificationItems}: VerificationProps) => {
+export const Verification = ({verificationItems, setResultView}: VerificationProps) => {
   const [checkListItems, setCheckListItems] = useState<VerificationItemWithDisabled[]>([])
   const [activeTab, setActiveTab] = useState<number | null>(null)
 
@@ -96,7 +97,9 @@ export const Verification = ({verificationItems}: VerificationProps) => {
   }
 
   const onSubmitClick = () => {
-    console.log('Submit clicked', checkListItems)
+    // Send API call
+    const allAnswersYes = checkListItems.every(item => item.selected === true)
+    setResultView(allAnswersYes)
   }
 
   const isSubmitDisabled =
@@ -104,24 +107,22 @@ export const Verification = ({verificationItems}: VerificationProps) => {
     checkListItems.every(item => item.selected === true)
 
   return (
-    <div className="flex min-h-screen items-center justify-center pt-2 pl-2 space-y-6 font-inter">
-      <div className="flex w-fit flex-col justify-between border shadow min-h-[476px]">
-        <ul>
-          {checkListItems.map((item, index) =>
-            <CheckBlock
-              key={item.id}
-              i={index}
-              verificationItem={item}
-              isActive={activeTab === index}
-              onClick={() => setActiveTab(index)}
-              onValueChange={setVerificationItemSelectValue}
-            />
-          )}
-        </ul>
-        <div className="p-3">
-          <Button fullWidth disabled={!isSubmitDisabled} onClick={onSubmitClick}>Submit</Button>
-        </div>
+    <>
+      <ul>
+        {checkListItems.map((item, index) =>
+          <CheckBlock
+            key={item.id}
+            i={index}
+            verificationItem={item}
+            isActive={activeTab === index}
+            onClick={() => setActiveTab(index)}
+            onValueChange={setVerificationItemSelectValue}
+          />
+        )}
+      </ul>
+      <div className="p-3">
+        <Button fullWidth disabled={!isSubmitDisabled} onClick={onSubmitClick}>Submit</Button>
       </div>
-    </div>
+    </>
   )
 }
