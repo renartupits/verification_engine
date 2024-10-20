@@ -1,6 +1,7 @@
 import {NextFunction, Request, Response} from 'express'
-import {listCheckItems} from '../service/verificationService'
-import logger from '../middlewares/logger'
+import {listCheckItems, validateChecksSubmit} from '../service/verificationService'
+import {ChecksJson} from './request/checksJson'
+import {AppError} from '../interfaces/AppError'
 
 const getCheckItems = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -14,12 +15,14 @@ const getCheckItems = async (req: Request, res: Response, next: NextFunction) =>
 
 const submitCheckItems = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const items = req.body
-    logger.info('Submitted check items', items)
+    const checksJson = req.body as ChecksJson
+    const isSuccess = validateChecksSubmit(checksJson)
 
-    res.json(items)
+    res.json({
+      success: !isSuccess
+    })
   } catch (error: any) {
-    next(new Error(error.message));
+    next(new AppError(error.message, 400));
   }
 }
 

@@ -1,8 +1,11 @@
 import {mockData} from './mockData'
-import logger from '../middlewares/logger'
+import {ChecksJson} from '../controller/request/checksJson'
 
 export const listCheckItems = () => {
-  const checkItems = mockData
-  logger.info(`Found ${checkItems.length} items total`)
-  return checkItems
+  return mockData
+}
+
+export const validateChecksSubmit = (checks: ChecksJson): boolean => {
+  return checks.results.some(check => check.result === 'no') ||
+    checks.results.every(check => check.result === 'true')
 }
