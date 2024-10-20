@@ -1,28 +1,31 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react'
-import classNames from 'classnames'
+import { ButtonHTMLAttributes, ReactNode } from 'react';
+import classNames from 'classnames';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
-  disabled?: boolean;
-  onClick?: () => void;
   children: ReactNode;
 }
 
-export const Button = ({fullWidth, disabled, onClick, children, ...rest}: ButtonProps) => {
+function Button({
+  fullWidth, disabled, onClick, children, ...rest
+}: ButtonProps) {
   const buttonClassNames = classNames('px-3 py-2 rounded text-sm font-medium text-white transition-colors duration-150 ease-in-out', {
     'bg-primary hover:bg-primary-hover': !disabled,
     'bg-primary-disabled cursor-not-allowed': disabled,
-    'w-full': fullWidth
-  })
+    'w-full': fullWidth,
+  });
 
   return (
     <button
-      {...rest}
+      type="button"
       disabled={disabled}
       className={buttonClassNames}
       onClick={onClick}
+      {...rest}
     >
       {children}
     </button>
-  )
+  );
 }
+
+export default Button;

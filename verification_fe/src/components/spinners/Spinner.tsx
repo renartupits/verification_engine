@@ -1,12 +1,4 @@
-export const CenteredSpinner = () => {
-  return (
-    <div className="flex justify-center items-center">
-      <Spinner />
-    </div>
-  )
-}
-
-export const Spinner = () => {
+export function Spinner() {
   return (
     <div role="status">
       <svg
@@ -54,5 +46,13 @@ export const Spinner = () => {
         />
       </svg>
     </div>
-  )
+  );
+}
+
+export function CenteredSpinner() {
+  return (
+    <div className="flex justify-center items-center">
+      <Spinner />
+    </div>
+  );
 }

@@ -1,13 +1,15 @@
-import AnimatedSuccess from '../../../components/animations/AnimatedSuccess.tsx'
-import AnimatedError from '../../../components/animations/AnimatedError.tsx'
-import { Icon } from '../../../components/icons/Icon.tsx'
+import AnimatedSuccess from '../../../components/animations/AnimatedSuccess.tsx';
+import AnimatedError from '../../../components/animations/AnimatedError.tsx';
+import Icon from '../../../components/icons/Icon.tsx';
 
 interface VerificationResultProps {
   success: boolean;
   setVerificationView: () => void;
 }
 
-export const VerificationResult = ({success, setVerificationView}: VerificationResultProps) => {
+export default function VerificationResult(
+  { success, setVerificationView }: VerificationResultProps,
+) {
   return (
     <div className="flex flex-col justify-between">
       <div className="px-4 pt-4 flex justify-between">
@@ -23,5 +25,5 @@ export const VerificationResult = ({success, setVerificationView}: VerificationR
         </div>
       </div>
     </div>
-  )
+  );
 }

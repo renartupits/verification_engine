@@ -1,10 +1,10 @@
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 
 interface VerificationContainerProps {
   children: ReactNode;
 }
 
-export const VerificationLayout = ({children}: VerificationContainerProps) => {
+function VerificationLayout({ children }: VerificationContainerProps) {
   return (
     // @TODO Handle mobile layout
     <div className="flex min-h-screen items-center justify-center space-y-6 font-inter">
@@ -12,5 +12,7 @@ export const VerificationLayout = ({children}: VerificationContainerProps) => {
         {children}
       </div>
     </div>
-  )
+  );
 }
+
+export default VerificationLayout;

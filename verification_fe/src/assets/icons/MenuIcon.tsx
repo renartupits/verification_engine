@@ -1,4 +1,4 @@
-export const MenuIcon = () => {
+function MenuIcon() {
   return (
     <svg
       fill="none"
@@ -14,3 +14,5 @@ export const MenuIcon = () => {
     </svg>
   );
 }
+
+export default MenuIcon;

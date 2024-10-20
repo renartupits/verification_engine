@@ -1,5 +1,5 @@
-import classNames from 'classnames'
-import { ButtonHTMLAttributes, ReactNode } from 'react'
+import classNames from 'classnames';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
 interface CheckProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   selected: boolean;
@@ -10,7 +10,9 @@ interface CheckProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export const Check = ({selected, position, inGroup = true, disabled, onClick, children}: CheckProps) => {
+function Check({
+  selected, position, inGroup = true, disabled, onClick, children,
+}: CheckProps) {
   const checkClassNames = classNames('px-4 py-1 text-sm border rounded font-medium transition-colors duration-150 ease-in-out', {
     'border-primary': !disabled,
 
@@ -26,17 +28,18 @@ export const Check = ({selected, position, inGroup = true, disabled, onClick, ch
     'rounded-r-none': inGroup && position === 1,
     'border-l-0 rounded-l-none': inGroup && position === 2,
 
-
-  })
+  });
 
   return (
     <button
+      type="button"
       className={checkClassNames}
       disabled={disabled}
       onClick={onClick}
     >
       {children}
     </button>
-  )
+  );
 }
 
+export default Check;

@@ -1,13 +1,12 @@
-import { Check } from './Check.tsx'
+import Check from './Check.tsx';
 
 interface CheckGroupProps {
   selected?: boolean;
   disabled: boolean;
-  onClick?: () => void;
   onChange: (value: boolean) => void;
 }
 
-export const CheckButtonGroup = ({selected, disabled, onChange}: CheckGroupProps) => {
+function CheckButtonGroup({ selected, disabled, onChange }: CheckGroupProps) {
   return (
     <div>
       <Check
@@ -27,5 +26,7 @@ export const CheckButtonGroup = ({selected, disabled, onChange}: CheckGroupProps
         No
       </Check>
     </div>
-  )
+  );
 }
+
+export default CheckButtonGroup;

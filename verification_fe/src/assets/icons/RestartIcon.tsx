@@ -1,4 +1,4 @@
-export const RestartIcon = () => {
+function RestartIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -10,3 +10,5 @@ export const RestartIcon = () => {
     </svg>
   );
 }
+
+export default RestartIcon;

@@ -1,7 +1,7 @@
-import { VerificationEngine } from './pages/verificationEngine/VerificationEngine.tsx'
+import VerificationEngine from './pages/verificationEngine/VerificationEngine.tsx';
 
 function App() {
-  return <VerificationEngine />
+  return <VerificationEngine />;
 }
 
-export default App
+export default App;
