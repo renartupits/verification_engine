@@ -1,0 +1,15 @@
+services:
+  frontend:
+    image: node:20-alpine
+    container_name: verification_fe
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - "5137:5137"
+    command: sh -c "yarn install && yarn dev"
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
