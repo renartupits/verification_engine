@@ -19,3 +19,7 @@ export enum AllowedKeyboardArrowsClicked {
   UP = 'UP',
   DOWN = 'DOWN'
 }
+
+export interface SubmitResponse {
+  success: boolean
+}

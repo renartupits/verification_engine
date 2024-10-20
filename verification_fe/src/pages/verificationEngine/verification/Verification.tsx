@@ -14,10 +14,10 @@ import {
 
 interface VerificationProps {
   verificationItems: VerificationItem[];
-  setResultView: (value: boolean) => void;
+  onSubmit: (verificationItems: VerificationItemWithDisabled[]) => void;
 }
 
-export const Verification = ({verificationItems, setResultView}: VerificationProps) => {
+export const Verification = ({verificationItems, onSubmit}: VerificationProps) => {
   const [checkListItems, setCheckListItems] = useState<VerificationItemWithDisabled[]>([])
   const [activeTab, setActiveTab] = useState<number | null>(null)
 
@@ -97,9 +97,7 @@ export const Verification = ({verificationItems, setResultView}: VerificationPro
   }
 
   const onSubmitClick = () => {
-    // Send API call
-    const allAnswersYes = checkListItems.every(item => item.selected === true)
-    setResultView(allAnswersYes)
+    onSubmit(checkListItems)
   }
 
   const isSubmitDisabled =

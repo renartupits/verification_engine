@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { VerificationItem } from './verification/types.ts'
+import { VerificationItem, VerificationItemWithDisabled } from './verification/types.ts'
 import { VerificationLayout } from '../../components/layouts/VerificationLayout.tsx'
 import { Verification } from './verification/Verification.tsx'
 import { VerificationResult } from './result/VerificationResult.tsx'
-import { useGetCheckItems } from '../../api/verificationApi.ts'
+import { useGetCheckItems, useSubmitCheck } from '../../api/verificationApi.ts'
 import { CenteredSpinner } from '../../components/spinners/Spinner.tsx'
 
 interface VerificationView {
@@ -22,6 +22,20 @@ export const VerificationEngine = () => {
   const [viewState, setViewState] = useState<VerificationViewState>({type: 'VERIFICATION', data: []})
 
   const {data, isPending, isError} = useGetCheckItems()
+  const {mutate: submitChecks} = useSubmitCheck()
+
+  const onSubmit = (verificationItems: VerificationItemWithDisabled[]) => {
+    const mappedRequest = {
+      results: verificationItems.map(item => ({
+        checkId: item.id,
+        result: item.selected ? 'yes' : 'no'
+      }))
+    }
+
+    submitChecks({body: JSON.stringify(mappedRequest)}, {
+      onSuccess: (response) => setResultView(response.success)
+    })
+  }
 
   const setResultView = (value: boolean) => {
     setViewState({
@@ -45,7 +59,7 @@ export const VerificationEngine = () => {
       return (
         <Verification
           verificationItems={data}
-          setResultView={setResultView}
+          onSubmit={onSubmit}
         />
       )
     } else if (viewState.type === 'RESULT') {
