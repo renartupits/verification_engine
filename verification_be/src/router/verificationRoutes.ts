@@ -6,7 +6,7 @@ import {Validator} from 'express-json-validator-middleware';
 const router = Router()
 const { validate } = new Validator({});
 
-router.get('/', verificationController.getCheckItems);
-router.post('/submit', validate({body: checksSchema}), verificationController.submitCheckItems);
+router.get('/checks', verificationController.getCheckItems);
+router.post('/checks/submit', validate({body: checksSchema}), verificationController.submitCheckItems);
 
 export default router;
