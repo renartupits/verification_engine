@@ -4,6 +4,7 @@ import { VerificationLayout } from '../../components/layouts/VerificationLayout.
 import { Verification } from './verification/Verification.tsx'
 import { VerificationResult } from './result/VerificationResult.tsx'
 import { useGetCheckItems } from '../../api/verificationApi.ts'
+import { CenteredSpinner } from '../../components/spinners/Spinner.tsx'
 
 interface VerificationView {
   type: 'VERIFICATION',
@@ -38,7 +39,7 @@ export const VerificationEngine = () => {
 
   const renderView = () => {
     if (viewState.type === 'VERIFICATION') {
-      if (isPending) return <div>Loading...</div> // @TODO Replace with spinner
+      if (isPending) return <CenteredSpinner />
       if (isError) return <div>Something happened, please try again later</div>
 
       return (
