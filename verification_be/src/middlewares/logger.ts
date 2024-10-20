@@ -6,9 +6,9 @@ const logger = pino({
     options: {
       colorize: true,
       levelFirst: true,
-      translateTime: true,
-    },
-  },
+      translateTime: true
+    }
+  }
 });
 
 export default logger;

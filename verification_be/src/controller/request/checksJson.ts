@@ -1,6 +1,7 @@
 export interface ChecksJson {
-  results: CheckResultsJson[]
+  results: CheckResultsJson[];
 }
+
 
 export interface CheckResultsJson {
   checkId: string;

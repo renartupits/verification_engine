@@ -1,3 +1,3 @@
-import {createServer} from './app'
+import {createServer} from './app';
 
 createServer();

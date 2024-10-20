@@ -1,6 +1,6 @@
 import request from 'supertest';
-import {closeServer, createServer} from '../../src/app'
-import {Express} from 'express'
+import {closeServer, createServer} from '../../src/app';
+import {Express} from 'express';
 
 describe('Verification Checks API', () => {
   let app: Express;
@@ -26,7 +26,7 @@ describe('Verification Checks API', () => {
     const response = await request(app).get('/api/verification/checks');
     expect(response.status).toBe(200);
 
-      expect(response.body).toEqual(
+    expect(response.body).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ id: expect.any(String), description: expect.any(String), priority: expect.any(Number) }),
       ])

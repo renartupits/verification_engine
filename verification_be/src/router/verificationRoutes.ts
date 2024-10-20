@@ -1,9 +1,9 @@
-import {Router} from 'express'
-import verificationController from '../controller/verificationController'
-import {checksSchema} from '../controller/schemas/checksSchema'
+import {Router} from 'express';
+import verificationController from '../controller/verificationController';
+import {checksSchema} from '../controller/schemas/checksSchema';
 import {Validator} from 'express-json-validator-middleware';
 
-const router = Router()
+const router = Router();
 const { validate } = new Validator({});
 
 router.get('/checks', verificationController.getCheckItems);

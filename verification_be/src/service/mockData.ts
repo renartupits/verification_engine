@@ -1,24 +1,24 @@
-import {CheckItem} from '../interfaces/checkItem'
+import {CheckItem} from '../interfaces/checkItem';
 
 export const mockData: CheckItem[] = [
   {
-    id: "aaa",
+    id: 'aaa',
     priority: 10,
-    description: "Face on the picture matches face on the document",
+    description: 'Face on the picture matches face on the document',
   },
   {
-    id: "bbb",
+    id: 'bbb',
     priority: 5,
-    description: "Veriff supports presented document",
+    description: 'Veriff supports presented document',
   },
   {
-    id: "ccc",
+    id: 'ccc',
     priority: 7,
-    description: "Face is clearly visible",
+    description: 'Face is clearly visible',
   },
   {
-    id: "ddd",
+    id: 'ddd',
     priority: 3,
-    description: "Document data is clearly visible",
+    description: 'Document data is clearly visible',
   },
-]
+];

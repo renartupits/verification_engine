@@ -1,6 +1,6 @@
-import {mockData} from '../../src/service/mockData'
-import {ChecksJson} from '../../src/controller/request/checksJson'
-import {listCheckItems, validateChecksSubmit} from '../../src/service/verificationService'
+import {mockData} from '../../src/service/mockData';
+import {ChecksJson} from '../../src/controller/request/checksJson';
+import {listCheckItems, validateChecksSubmit} from '../../src/service/verificationService';
 
 describe('Verification Service', () => {
   describe('listCheckItems', () => {
