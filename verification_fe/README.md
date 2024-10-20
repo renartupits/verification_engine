@@ -1,51 +1,92 @@
-# Verification engine frontend
-## todo readme
+# 🛡️ Verification Tool Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the frontend component of our Verification Engine, designed to handle the process of completing verification checks. The application interacts with the backend API to fetch a list of verification check items, each requiring a “Yes” or “No” answer.
 
-Currently, two official plugins are available:
+Initially, only the first item in the list is enabled for user interaction, with other items remaining disabled. As each check is answered, the next item in the sequence becomes enabled. Upon completing the checks, the data is submitted back to the backend API, which processes the results and returns a final decision. The application then displays a result screen based on the outcome returned by the API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- Built with **React** and **TypeScript** for a robust and scalable frontend.
+- Follows **Airbnb ESLint rules** to keep the codebase clean and consistent.
+- You can run the app locally with `yarn` or fire it up using **Docker** (Docker-compose included).
+- Some **unit tests** are in place to ensure things don’t break when you least expect it.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🛠️ Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+### Prerequisites
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Before running the app, make sure you have the following installed:
+
+- **Node.js** (v16 or higher recommended)
+- **Yarn** package manager (or **npm** if you prefer)
+- **Docker** (optional but recommended for containerized environments)
+
+### Installation
+
+1. **Clone the repo**:
+
+   ```bash
+   git clone https://github.com/renartupits/verification_engine.git
+   cd verification_engine/verification_fe
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   yarn install
+   ```
+
+### Running the App
+
+There are two ways to get the app up and running:
+
+1. **With Yarn (local development)**:
+
+   ```bash
+   yarn dev
+   ```
+
+   This will start the app on [http://localhost:5173](http://localhost:5173).
+
+2. **With Docker Compose**:
+   If you'd prefer to run the app inside a Docker container, simply run:
+
+   ```bash
+   docker-compose up
+   ```
+
+   This will build and run the app inside a container. The app should still be accessible at [http://localhost:5173](http://localhost:5173).
+
+### Running Tests
+
+To run the test suite, use the following command:
+
+```bash
+yarn test
+   ```
+
+This will run the unit tests and give you feedback on the current state of the app.
+
+## 🔧 Development Tools
+
+- **ESLint** is configured to use Airbnb’s strict style guide. To run the linter manually:
+
+  ```bash
+  yarn lint
+   ```
+
+- **Prettier** is also integrated for code formatting, ensuring the code stays nice and tidy.
+
+## 📦 Project Structure
+
+The project structure is organized to maintain scalability and separation of concerns. Here’s a quick overview:
+
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+/src
+/api          # Fetcher client and service functions
+/assets       # Shared assets, icons
+/components   # Reusable UI components
+/pages        # Main page-level components
+/listeners    # Custom React hooks
+/tests        # Unit tests
 ```
