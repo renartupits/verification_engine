@@ -6,7 +6,7 @@ export const queryClient = new QueryClient();
 
 export const useGetCheckItems = () => {
   const fetch = async () => {
-    const url = '/verification';
+    const url = '/verification/checks';
     const { data } = await fetchWithoutAuthorization(url, 'GET');
     return data;
   };
@@ -19,7 +19,7 @@ export const useGetCheckItems = () => {
 
 export const useSubmitCheck = () => {
   const fetch = async (requestBody: string) => {
-    const url = '/verification/submit';
+    const url = '/verification/checks/submit';
     const { data } = await fetchWithoutAuthorization(url, 'POST', requestBody);
     return data;
   };
