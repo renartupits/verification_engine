@@ -9,7 +9,6 @@ export interface VerificationItemWithDisabled extends VerificationItem {
   disabled: boolean;
 }
 
-
 export enum AllowedKeyboardNumbersClicked {
   NR1 = '1',
   NR2 = '2',
@@ -21,5 +20,5 @@ export enum AllowedKeyboardArrowsClicked {
 }
 
 export interface SubmitResponse {
-  success: boolean
+  success: boolean;
 }

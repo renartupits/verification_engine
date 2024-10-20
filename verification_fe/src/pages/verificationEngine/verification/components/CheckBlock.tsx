@@ -7,10 +7,10 @@ interface CheckBlockProps {
   isActive: boolean;
   verificationItem: VerificationItemWithDisabled;
   onClick: () => void;
-  onValueChange: (item: VerificationItemWithDisabled, value: boolean) => void;
+  setVerificationItemSelectValue: (index: number, value: boolean) => void;
 }
 
-export const CheckBlock = ({i, isActive, verificationItem, onClick, onValueChange}: CheckBlockProps) => {
+export const CheckBlock = ({i, isActive, verificationItem, onClick, setVerificationItemSelectValue}: CheckBlockProps) => {
   const { description, selected, disabled } = verificationItem
 
   const descriptionClassNames = classNames('text-sm text-content-default', {
@@ -24,7 +24,7 @@ export const CheckBlock = ({i, isActive, verificationItem, onClick, onValueChang
 
   const onCheckButtonGroupValueChange = (value: boolean) => {
     onClick()
-    onValueChange(verificationItem, value)
+    setVerificationItemSelectValue(i, value)
   }
 
   return (
