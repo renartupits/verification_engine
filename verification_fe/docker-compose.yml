@@ -7,7 +7,7 @@ services:
       - ./:/app
       - /app/node_modules
     ports:
-      - "5137:5137"
+      - "5173:5173"
     command: sh -c "yarn install && yarn dev"
     environment:
       - NODE_ENV=development
