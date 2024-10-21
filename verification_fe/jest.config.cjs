@@ -5,10 +5,8 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
-  globals: {
-    "ts-jest": {
-      tsConfig: "tsconfig.app.json"
-    }
+  transform: {
+    '^.+\\.(ts|tsx)$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.app.json' }],
   },
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
 };
