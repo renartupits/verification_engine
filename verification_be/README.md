@@ -30,6 +30,7 @@ Before running the app, make sure you have the following installed:
 
    ```bash
    npm install
+   npm run build
    ```
 
 ### Running the App
@@ -48,7 +49,7 @@ There are two ways to get the app up and running:
    If you'd prefer to run the app inside a Docker container, simply run:
 
    ```bash
-   docker-compose up
+   docker-compose up --build
    ```
 
    This will build and run the app inside a container. The app should still be accessible at [http://localhost:3000](http://localhost:3000).
