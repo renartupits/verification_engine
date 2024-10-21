@@ -39,12 +39,19 @@ function VerificationEngine() {
   };
 
   const onSubmit = (verificationItems: VerificationItemWithDisabled[]) => {
-    const mappedRequest = {
-      results: verificationItems.map((item) => ({
-        checkId: item.id,
-        result: item.selected ? 'yes' : 'no',
-      })),
-    };
+    let mappedRequest;
+    const hasSomeNo = verificationItems.some((item) => !item.selected);
+
+    if (hasSomeNo) {
+      mappedRequest = { results: [{ checkId: verificationItems[0].id, result: 'no' }] };
+    } else {
+      mappedRequest = {
+        results: verificationItems.map((item) => ({
+          checkId: item.id,
+          result: item.selected ? 'yes' : 'no',
+        })),
+      };
+    }
 
     submitChecks({ body: JSON.stringify(mappedRequest) }, {
       onSuccess: (response) => setResultView(response.success),
