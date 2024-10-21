@@ -60,7 +60,7 @@ function Verification({ verificationItems, onSubmit }: VerificationProps) {
     || checkListItems.every((item) => item.selected === true);
 
   return (
-    <>
+    <div className="flex flex-col justify-between">
       <ul>
         {checkListItems.map((item, index) => (
           <CheckBlock
@@ -82,7 +82,7 @@ function Verification({ verificationItems, onSubmit }: VerificationProps) {
           Submit
         </Button>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -11,17 +11,17 @@ export default function VerificationResult(
   { success, setVerificationView }: VerificationResultProps,
 ) {
   return (
-    <div className="flex flex-col justify-between">
-      <div className="px-4 pt-4 flex justify-between">
+    <div className="flex w-full flex-col">
+      <div className="flex justify-between px-4 pt-4">
         <Icon icon="restart" onClick={setVerificationView} />
       </div>
-      <div className="p-12 flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center p-12">
         <div className="h-[150px] w-[150px]">
           {success ? <AnimatedSuccess /> : <AnimatedError />}
         </div>
         <div className="mt-8 text-center">
-          <span>Your answer was:</span>
-          <div className="mt-6 font-semibold text-4xl">{success ? 'YES' : 'NO'}</div>
+          <span>Your result is</span>
+          <div className="mt-6 text-4xl font-semibold">{success ? 'YES' : 'NO'}</div>
         </div>
       </div>
     </div>

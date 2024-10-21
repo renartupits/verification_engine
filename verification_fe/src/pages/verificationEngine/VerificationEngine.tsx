@@ -5,6 +5,7 @@ import Verification from './verification/Verification.tsx';
 import VerificationResult from './result/VerificationResult.tsx';
 import { useGetCheckItems, useSubmitCheck } from '../../api/verificationApi.ts';
 import { CenteredSpinner } from '../../components/spinners/Spinner.tsx';
+import Alert from '../../components/alerts/Alert.tsx';
 
 interface VerificationView {
   type: 'VERIFICATION';
@@ -61,7 +62,7 @@ function VerificationEngine() {
   const renderView = () => {
     if (viewState.type === 'VERIFICATION') {
       if (isPending) return <CenteredSpinner />;
-      if (isError) return <div>Something happened, please try again later</div>;
+      if (isError) return <Alert message="Start backend_be locally to view checks!" />;
 
       return (
         <Verification
