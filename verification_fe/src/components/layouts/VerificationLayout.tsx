@@ -6,9 +6,8 @@ interface VerificationContainerProps {
 
 function VerificationLayout({ children }: VerificationContainerProps) {
   return (
-    // @TODO Handle mobile layout
-    <div className="flex min-h-screen items-center justify-center space-y-6 font-inter">
-      <div className="flex w-fit flex-col justify-between border shadow min-h-[476px] min-w-[370px]">
+    <div className="flex min-h-screen items-start justify-center p-4 font-inter lg:items-center">
+      <div className="flex w-full flex-col justify-between border min-h-[476px] min-w-[370px] lg:w-fit lg:shadow">
         {children}
       </div>
     </div>
